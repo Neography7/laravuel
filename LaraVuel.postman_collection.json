@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "7b1a10be-601e-4935-8553-6cceb0e3455a",
+		"name": "LaraVuel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28559847"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"const bearerToken = jsonData.token;\r",
+									"\r",
+									"pm.collectionVariables.set(\"Token\", bearerToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"1@1.com\",\r\n    \"password\": \"111222\",\r\n    \"password_confirmation\": \"111222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"const bearerToken = jsonData.token;\r",
+									"\r",
+									"pm.collectionVariables.set(\"Token\", bearerToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"email\": \"test-user@example.com\",\r\n    \"email\": \"1@1.com\",\r\n    // \"password\": \"123456\"\r\n    \"password\": \"111222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"const bearerToken = null;\r",
+									"\r",
+									"pm.collectionVariables.set(\"Token\", bearerToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/auth/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Preferences",
+			"item": [
+				{
+					"name": "Get User Preferences",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/user/preferences",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Preferences",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categories\": [\"technology\", \"health\", \"science\"],\r\n    \"sources\": [\"newsapi\",\"guardian\",\"nytimes\"],\r\n    \"authors\": [\"John Doe\", \"Jane Smith\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/user/preferences",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Newsfeed",
+			"item": [
+				{
+					"name": "Get Newsfeed",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/newsfeed?page=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"newsfeed"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/newsfeed?page=1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"newsfeed"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Oct 2024 10:15:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"title\": \"Middle East crisis live: six killed in Israeli strike on medical centre in central Beirut, Lebanon officials say\",\n            \"description\": \"\",\n            \"published_at\": \"2024-10-03T10:12:18Z\",\n            \"url\": \"https://www.theguardian.com/world/live/2024/oct/03/israel-lebanon-hezbollah-war-strikes-live-updates-middle-east-crisis\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"Pound falls as Bank of England governor says it could become ‘more activist’ on rate cuts – business live\",\n            \"description\": \"\",\n            \"published_at\": \"2024-10-03T10:07:50Z\",\n            \"url\": \"https://www.theguardian.com/business/live/2024/oct/03/pound-falls-governor-bank-of-england-more-activist-rate-cuts-oil-price-us-jobs-business-live\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"JD Vance is the handpicked leader of the antidemocracy movement in America | Robert Reich\",\n            \"description\": \"\",\n            \"published_at\": \"2024-10-03T10:00:07Z\",\n            \"url\": \"https://www.theguardian.com/commentisfree/2024/oct/03/jd-vance-anti-democracy-movement-leader\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"‘I am going to die’: North Dakota teen in runaway vehicle saved by crashing into police car\",\n            \"description\": \"\",\n            \"published_at\": \"2024-10-03T10:00:06Z\",\n            \"url\": \"https://www.theguardian.com/us-news/2024/oct/03/north-dakota-teen-speeding-police-crash\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"How we met: ‘We were at the circus, talking nonsense in the queue for the toilets. I really liked her’\",\n            \"description\": \"\",\n            \"published_at\": \"2024-10-03T10:00:06Z\",\n            \"url\": \"https://www.theguardian.com/lifeandstyle/2024/oct/03/how-we-met-lara-claire-turban\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"Why Israel Is Worried About Iran’s Nuclear Ambitions\",\n            \"description\": \"Despite the supreme leader’s stated religious objections to nuclear weapons, Tehran has been steadily making progress on its nuclear weapons capabilities over the course of the past year.\",\n            \"published_at\": \"2024-10-03T09:07:35+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/opinion/israel-iran-nuclear-weapons.html\",\n            \"author\": \"By Reuel Marc Gerecht and Ray Takeyh\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/03/multimedia/03gerecht-kptm/03gerecht-kptm-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Hurricane Helene Leaves Trail of Destruction in North Carolina\",\n            \"description\": \"On Wednesday, the death toll of Hurricane Helene rose to at least 183, making it the deadliest hurricane to strike the mainland United States since 2005. Nicholas Bogel-Burroughs, a reporter for The New York Times, describes the scene in North Car...\",\n            \"published_at\": \"2024-10-03T09:07:26+0000\",\n            \"url\": \"https://www.nytimes.com/video/weather/100000009737061/hurricane-helene-leaves-trail-of-destruction-in-north-carolina.html\",\n            \"author\": \"By Nicholas Bogel-Burroughs, Christina Shaman and James Surdam\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/03/autossell/HELENE-DAMAGE-COVER-3/HELENE-DAMAGE-COVER-3-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Seeking Some (Relative) Peace and Quiet in Brooklyn for Less Than $800,000\",\n            \"description\": \"After arriving from California, a Manhattan-based lawyer found the Upper West Side too loud and crowded. Would her budget be enough for some outdoor space in Brooklyn?\",\n            \"published_at\": \"2024-10-03T09:07:21+0000\",\n            \"url\": \"https://www.nytimes.com/interactive/2024/10/03/realestate/brooklyn-apartment-search.html\",\n            \"author\": \"By Joyce Cohen\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/06/multimedia/03Hunt-Plastiras-11-fvqz/03Hunt-Plastiras-11-fvqz-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Fact-Checking JD Vance and Tim Walz\",\n            \"description\": \"How factual have Senator JD Vance and Gov. Tim Walz been during the campaign? Linda Qiu, a New York Times reporter who looks at some statements made by politicians and public figures, checks some of their claims.\",\n            \"published_at\": \"2024-10-03T09:07:17+0000\",\n            \"url\": \"https://www.nytimes.com/video/us/politics/100000009736818/fact-checking-jd-vance-and-tim-walz.html\",\n            \"author\": \"By Linda Qiu, Gabriel Blanco, Claire Hogan, Farah Otero-Amad, Laura Salaberry and Karen Hanley\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/02/us/politics/linda-thumb2/linda-thumb2-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Kurt Vonnegut the Board Game Designer\",\n            \"description\": \"“Man created the checkerboard,” Mr. Vonnegut once wrote. While working on novels in the 1950s, he created a board game of his own.\",\n            \"published_at\": \"2024-10-03T09:06:24+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/crosswords/kurt-vonnegut-board-game-ghq.html\",\n            \"author\": \"By Julia Carmel\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/03/crosswords/03gameplay-vonnegut/03gameplay-vonnegut-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"When the North Carolina Mountains Become Hurricane Alley\",\n            \"description\": \"Most of the deaths from Hurricane Helene occurred far from Florida, where the storm first made landfall. Experts say alerts and evacuation orders need to target inland residents too.\",\n            \"published_at\": \"2024-10-03T09:06:19+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/us/hurricane-helene-warnings-alerts.html\",\n            \"author\": \"By Jenna Russell, Emily Cochrane, Edgar Sandoval and Mark Barrett\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/02/multimedia/02NAT-STORM-WARNINGS-02-twqh/02NAT-STORM-WARNINGS-02-twqh-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"How the North Carolina Legislature Left Homes Vulnerable to Helene\",\n            \"description\": \"Under pressure to control housing costs, Republican lawmakers rejected standards meant to protect against disasters, experts say.\",\n            \"published_at\": \"2024-10-03T09:06:04+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/climate/north-carolina-homes-helene-building-codes.html\",\n            \"author\": \"By Christopher Flavelle\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/03/multimedia/03cli-HELENE-BUILDINGS-01-tbhz/03cli-HELENE-BUILDINGS-01-tbhz-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"‘Saturday Night Live’: 11 Defining Political Sketches\",\n            \"description\": \"Since the 1970s, the late-night institution has offered up definitive impersonations of American presidents and other politicians. Here are its most memorable political sketches.\",\n            \"published_at\": \"2024-10-03T09:06:01+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/arts/television/saturday-night-live-politics.html\",\n            \"author\": \"By Dave Itzkoff\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/03/multimedia/03snl-political-bvwf/03snl-political-bvwf-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"So This Is Goodbye\",\n            \"description\": \"How do you move on to something else after years on the job?\",\n            \"published_at\": \"2024-10-03T09:05:50+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/business/so-this-is-goodbye.html\",\n            \"author\": \"By Julia Rothman and Shaina Feinberg\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/02/business/03scratch-promo/oakImage-1727906665694-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"A Bartender, a Firefighter and a Giuliani Walk Onto a Fairway\",\n            \"description\": \"The Brooklyn Open golf tournament attracts players whose backgrounds are as varied as their swings.\",\n            \"published_at\": \"2024-10-03T09:05:50+0000\",\n            \"url\": \"https://www.nytimes.com/2024/10/03/style/brooklyn-open-golf-tournament.html\",\n            \"author\": \"By Paul Rogers and Tony Cenicola\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2024/10/03/multimedia/03BROOKLYN-OPEN-01-ctwj/03BROOKLYN-OPEN-01-ctwj-articleLarge.jpg\",\n            \"api\": \"newyork\"\n        }\n    ],\n    \"page\": \"1\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"followRedirects": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/articles/search?query=playstation&page=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "playstation",
+									"description": "Search keywords"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/articles/search?query=playstation&page=1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"articles",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "playstation",
+											"description": "Search keywords"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Oct 2024 10:14:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"title\": \"Sony reveals £700 PlayStation 5 Pro console\",\n            \"description\": \"\",\n            \"published_at\": \"2024-09-11T08:37:56Z\",\n            \"url\": \"https://www.theguardian.com/games/article/2024/sep/11/sony-reveals-700-playstation-5-pro-console\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"Astro Bot review – glittering ideas make Team Asobi’s 3D platformer a gem\",\n            \"description\": \"\",\n            \"published_at\": \"2024-09-05T12:00:38Z\",\n            \"url\": \"https://www.theguardian.com/games/article/2024/sep/05/astro-bot-review-team-asobi-playstation-5-team-asobi-sony\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"PlayStation 5 shooter Concord taken offline just two weeks after release\",\n            \"description\": \"\",\n            \"published_at\": \"2024-09-03T17:01:13Z\",\n            \"url\": \"https://www.theguardian.com/games/article/2024/sep/03/playstation-5-shooter-concord-taken-offline-just-two-weeks-after-release\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"‘It’s important for us to be happy’: Astro Bot, the most joyous game on PlayStation 5\",\n            \"description\": \"\",\n            \"published_at\": \"2024-06-25T12:45:23Z\",\n            \"url\": \"https://www.theguardian.com/games/article/2024/jun/25/astro-bot-the-most-joyous-game-on-playstation-5-team-asobi\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"Sony to lay off 900 workers in its PlayStation division\",\n            \"description\": \"\",\n            \"published_at\": \"2024-02-27T17:31:05Z\",\n            \"url\": \"https://www.theguardian.com/technology/2024/feb/27/sony-layoffs-playstation-900-workers\",\n            \"author\": \"Unknown author\",\n            \"source\": \"The Guardian\",\n            \"image\": null,\n            \"api\": \"guardian\"\n        },\n        {\n            \"title\": \"PlayStation and Xbox hack attack?\",\n            \"description\": \"A hacker group says it was behind the user connection problems suffered on Christmas Day by users of Microsoft Xbox and Sony PlayStations. Paul Chapman reports.\",\n            \"published_at\": \"2014-12-26T06:01:50+0000\",\n            \"url\": \"https://www.nytimes.com/video/multimedia/100000003418749/playstation-and-xbox-hack-attack.html\",\n            \"author\": \"Unknown author\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2014/12/26/multimedia/video-cybercrime-o/video-cybercrime-o-thumbWide.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"That Old PlayStation Can Aid Science \",\n            \"description\": \"Gaurav Khanna built a supercomputer at the University of Massachusetts Dartmouth physics department using 200 PlayStation 3 consoles.\",\n            \"published_at\": \"2014-12-22T20:45:50+0000\",\n            \"url\": \"https://www.nytimes.com/2014/12/23/science/an-economical-way-to-save-progress.html\",\n            \"author\": \"By Laura Parker\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2014/12/23/science/23SUPE1/23SUPE1-thumbWide.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Life Inside a PlayStation\",\n            \"description\": \"Would a law providing for treatment of Internet gaming addiction actually help players to recover?\",\n            \"published_at\": \"2013-11-25T00:44:09+0000\",\n            \"url\": \"https://www.nytimes.com/2013/11/25/opinion/life-inside-a-playstation.html\",\n            \"author\": \"By Young-Ha Kim\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2013/10/04/opinion/Kim-contributor/Kim-contributor-thumbWide-v3.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"No Price Cuts Planned for Playstation 3\",\n            \"description\": \"The chairman of Sony, Howard Stringer said the company did not need to lower the price of the game console in response to a possible $50 cut in the Microsoft’s Xbox 360.\",\n            \"published_at\": \"2008-07-12T04:00:00+0000\",\n            \"url\": \"https://www.nytimes.com/2008/07/12/business/12bizbriefs-NOPRICECUTSP_BRF.html\",\n            \"author\": \"By Bloomberg News\",\n            \"source\": \"New York Times\",\n            \"image\": null,\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"New PlayStation's Price Point\",\n            \"description\": \"The Times's Seth Schiesel reports from Los Angeles on  the Sony Corporation's announcements about its PlayStation 3 video game console.\",\n            \"published_at\": \"2006-05-09T12:41:41+0000\",\n            \"url\": \"https://www.nytimes.com/video/technology/1194817091952/new-playstation-s-price-point.html\",\n            \"author\": \"Unknown author\",\n            \"source\": \"New York Times\",\n            \"image\": \"images/2006/05/09/technology/E3_Expo.190x126.fr.jpg\",\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Sony to Sell PlayStation 3 for $499\",\n            \"description\": \"Sony said on Monday that it planned to sell the base model of its PlayStation 3 video game console for $499, a price that industry analysts said could put it at a competitive disadvantage to rival Microsoft and its Xbox 360.      Sony said that it...\",\n            \"published_at\": \"2006-05-09T05:00:00+0000\",\n            \"url\": \"https://www.nytimes.com/2006/05/09/technology/sony-to-sell-playstation-3-for-499.html\",\n            \"author\": \"By Matt Richtel\",\n            \"source\": \"New York Times\",\n            \"image\": null,\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Hackers strike again at PlayStation\",\n            \"description\": \"\",\n            \"published_at\": \"2005-07-07T05:00:00+0000\",\n            \"url\": \"https://www.nytimes.com/2005/07/07/technology/hackers-strike-again-at-playstation.html\",\n            \"author\": \"Unknown author\",\n            \"source\": \"New York Times\",\n            \"image\": null,\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"From PlayStation to Supercomputer for $50,000\",\n            \"description\": \"National Center for Supercomputing Applications at University of Illinois at Urbana-Champaign builds supercomputer using 70 individual Sony Playstation 2 machines; project required no hardware engineering other than mounting Playstations in a rack...\",\n            \"published_at\": \"2003-05-26T05:00:00+0000\",\n            \"url\": \"https://www.nytimes.com/2003/05/26/business/technology-from-playstation-to-supercomputer-for-50000.html\",\n            \"author\": \"By John Markoff\",\n            \"source\": \"New York Times\",\n            \"image\": null,\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"No Power, No Plumbing, No PlayStation\",\n            \"description\": \"Manhattanites Hazel and John Kelly's comment on choosing 1800's Catskills farmhouse without electricity, indoor plumbing or other amenities as weekend home; photo (M)\",\n            \"published_at\": \"2002-06-21T05:00:00+0000\",\n            \"url\": \"https://www.nytimes.com/2002/06/21/travel/havens-no-power-no-plumbing-no-playstation.html\",\n            \"author\": \"By Kimberly Stevens\",\n            \"source\": \"New York Times\",\n            \"image\": null,\n            \"api\": \"newyork\"\n        },\n        {\n            \"title\": \"Pricing the PlayStation 2\",\n            \"description\": \"Sony Corp's Playstation 2 video-game console may cost some buyers more than expected when introduced in US on Oct 26; KBKids.com Inc, controlled by Consolidated Stores Corp, is selling system for $330 to those who want to reserve copy before relea...\",\n            \"published_at\": \"2000-07-14T05:00:00+0000\",\n            \"url\": \"https://www.nytimes.com/2000/07/14/business/pricing-the-playstation-2.html\",\n            \"author\": \"By Bloomberg News\",\n            \"source\": \"New York Times\",\n            \"image\": null,\n            \"api\": \"newyork\"\n        }\n    ],\n    \"page\": \"1\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{Token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
